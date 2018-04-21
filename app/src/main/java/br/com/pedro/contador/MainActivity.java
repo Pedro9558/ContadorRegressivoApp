@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     // Texto de ajuda
     private String helpText;
     private boolean userChanged = false;
-    private Timer t;
     // Componentes da tela
     private Spinner songs;
     private SongManager songManager;
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Passa o Context da aplicação para o SoundSamples para que se haja a instância da biblioteca
+        // Passa o Context da aplicação para o SoundSamples para que se haja a instância da biblioteca de sons
         SoundSamples.setContext(getApplicationContext());
         // Instancia dos valores
         songs = findViewById(R.id.sons);
@@ -63,12 +62,12 @@ public class MainActivity extends AppCompatActivity {
                         previewButton.setEnabled(false);
                     }else{
                         previewButton.setEnabled(true);
-                        // Caso haja algum som sendo reproduzido no meio da mudança do som, interrompe-se o mesmo
-                        if(songManager.getSong() != null && songManager.isPlaying()) {
-                            try {
-                                songManager.stop();
-                            } catch (NoSongInQueueException e) {
-                            }
+                    }
+                    // Caso haja algum som sendo reproduzido no meio da mudança do som, interrompe-se o mesmo
+                    if(songManager.getSong() != null && songManager.isPlaying()) {
+                        try {
+                            songManager.stop();
+                        } catch (NoSongInQueueException e) {
                         }
                     }
                 }else{
@@ -219,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
                         horas.setBackgroundColor(getResources().getColor(R.color.white));
                         minutos.setBackgroundColor(getResources().getColor(R.color.white));
                         segundos.setBackgroundColor(getResources().getColor(R.color.white));
-                        t = Timer.getTimer().setHoras(iHoras)
+                        Timer.getTimer().setHoras(iHoras)
                                 .setMinutos(iMinutos)
                                 .setSegundos(iSegundos);
                         // Conector a outra atividade
@@ -274,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        previewButton.setBackgroundColor(getResources().getColor(R.color.transparent_gray));
+                        previewButton.setBackgroundColor(getResources().getColor(R.color.white));
                         previewButton.setText(getResources().getString(R.string.previa));
                     }
                 });
