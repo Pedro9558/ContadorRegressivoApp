@@ -4,8 +4,13 @@ package br.com.pedro.contador.song;
 import android.content.Context;
 import android.media.MediaPlayer;
 
+/**
+ * Classe responsavel por armazenar dados do som
+ * @author Pedro9558
+ */
 public class Song {
     private String name;
+    // Instancia do audio
     private MediaPlayer audio;
     public Song(String nome, MediaPlayer audio) {
         this.name = nome;

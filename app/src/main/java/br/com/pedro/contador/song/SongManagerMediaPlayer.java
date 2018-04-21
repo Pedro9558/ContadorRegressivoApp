@@ -3,17 +3,26 @@ package br.com.pedro.contador.song;
 
 import br.com.pedro.contador.exceptions.NoSongInQueueException;
 
-
+/**
+ * Gerenciador de som usando MediaPlayer
+ * @author Pedro9558
+ */
 public class SongManagerMediaPlayer implements SongManager {
     private float volume;
     private Song song;
     private static SongManagerMediaPlayer instance;
     private SongManagerMediaPlayer() {}
+
+    /**
+     * Retorna instancia do gerenciador de som
+     * @return Gerenciador de som
+     */
     public static SongManagerMediaPlayer getSongManager() {
         if(instance == null)
             instance = new SongManagerMediaPlayer();
         return instance;
     }
+
     @Override
     public void play() throws NoSongInQueueException {
         if(song == null)
@@ -61,7 +70,7 @@ public class SongManagerMediaPlayer implements SongManager {
     }
 
     @Override
-    public boolean getLoopeable() {
+    public boolean isLoopeable() {
         return this.song.getAudio().isLooping();
     }
 
@@ -74,6 +83,7 @@ public class SongManagerMediaPlayer implements SongManager {
     @Override
     public void setVolume(float volume) {
         this.volume = (volume > 0.0f) ? volume : 0.0f;
+        this.song.getAudio().setVolume(this.getVolume(),this.getVolume());
     }
 
     @Override
@@ -89,6 +99,10 @@ public class SongManagerMediaPlayer implements SongManager {
     public boolean isPaused() {
         return !song.getAudio().isPlaying() && song.getAudio().getCurrentPosition() != 0;
     }
+
+    /**
+     * Classe responsavel por gerenciar se o audio está sendo reproduzido
+     */
     class PlayerManager implements Runnable {
         @Override
         public void run() {
