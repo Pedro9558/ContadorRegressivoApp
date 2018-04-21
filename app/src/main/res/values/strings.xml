@@ -3,29 +3,41 @@
     <string name="titulo">Contador Regressivo 0.01</string>
     <string name="som">Selecione um som:</string>
     <string name="tempo">Digite o tempo:</string>
+    <!--Nomes para o botão de prévia-->
     <string name="previa">Prévia</string>
     <string name="previa_tocando">Tocando&#8230;</string>
+    <!--Textos de ajuda-->
     <string name="ajuda1">Aqui você pode selecionar o som que a aplicação fará ao encerrar o contador! Ou pode selecionar "Nenhum" caso não queira som</string>
     <string name="ajuda2">Aqui você digita o tempo do contador, as horas, os minutos e os segundos.</string>
+    <!--Lista de sons da aplicação-->
     <string-array name="sons">
         <item>Nenhum(Vibrar)</item>
         <item>Alarme</item>
         <item>Sirene</item>
         <item>Despertador</item>
     </string-array>
+
     <string name="horas">Horas</string>
     <string name="iniciar"><u>Iniciar</u></string>
     <string name="minutos">Minutos</string>
     <string name="segundos">Segundos</string>
+    <!--Alerta dado ao tentar interromper o cronometro-->
     <string name="alerta_titulo">Atenção!</string>
     <string name="alerta_mensagem">Fazer esta ação irá interromper o contador e voltará ao menu inicial da aplicação. Deseja voltar ao menu inicial da aplicação?</string>
     <string name="alerta_sim">Sim!</string>
     <string name="alerta_nao">Não!</string>
+    <!--Textos do timer-->
     <string name="timer_inicial">00:00:00</string>
     <string name="timer_ativo">{h}:{m}:{s}</string>
+    <!--Notificações-->
+    <string name="notificacao_titulo">Contador Rodando</string>
+    <string name="notificacao_mensagem">Seu contador continua rodando, clique aqui para abri-lo</string>
+
     <string name="interromper">Interromper Contador</string>
+    <!--Mensagens de erro-->
     <string name="erro_valor_invalido">Valor invalido para {variavel}! Ele tem que estar entre {min} e {max}!</string>
     <string name="erro_valor_negativo">Valor invalido para {variavel}! Valor não pode ser negativo!</string>
     <string name="erro_valor_indefinido">Por favor, coloque o valor de {variavel}!</string>
+
     <string name="agradecimento">Obrigado por usar o contador regressivo! ;-)</string>
 </resources>
