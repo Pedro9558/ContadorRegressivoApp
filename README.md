@@ -10,7 +10,8 @@ Um aplicativo feito para realizar contagens regressivas e alertar o usuário atra
   > Segue o link com a lista das APIs Android para referencia: https://pt.wikipedia.org/wiki/Hist%C3%B3rico_de_vers%C3%B5es_do_Android#cite_note-6
   
 ## Instalação
-	*Em breve...*
+
+*Em breve...*
   
 ## Como utilizar
 1. Abra o aplicativo "Contador Regressivo"
@@ -19,7 +20,12 @@ Um aplicativo feito para realizar contagens regressivas e alertar o usuário atra
 4. Clique no botão iniciar e espere o contador terminar
 
 ## Atualizações
-Nenhuma no momento, por ser o primeiro envio
+1.Correção de bugs
+  - Corrigido bug do celular continuar vibrando, mesmo após encerramento do contador
+  - Corrigido problemas com o layout do menu inicial(Espero)
+  - Corrigido bug de prévia continuar tocando quando alternada a escolha do som para Nenhum
+2.Adições
+  - Adicionado sistema de notificações que notifica o usuário caso haja um contador em andamento
 
 
 
