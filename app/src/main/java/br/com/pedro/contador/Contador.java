@@ -1,9 +1,16 @@
 package br.com.pedro.contador;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.VibrationEffect;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -26,6 +33,7 @@ public class Contador extends AppCompatActivity {
     // Variaveis de controle
     private boolean contando = false;
     private boolean perguntar = true;
+    private boolean animacao = true;
     private boolean interrompidoPeloUsuario = false;
     // Timer do cronometro
     private Timer t;
@@ -96,6 +104,7 @@ public class Contador extends AppCompatActivity {
                         public void onClick(DialogInterface dialogInterface, int i) {
                             contando = false;
                             interrompidoPeloUsuario = true;
+                            animacao = false;
                             if (songManager.isPlaying()) {
                                 try {
                                     songManager.stop();
@@ -113,6 +122,7 @@ public class Contador extends AppCompatActivity {
         }else{
             contando = false;
             interrompidoPeloUsuario = true;
+            animacao = false;
             if (songManager.isPlaying()) {
                 try {
                     songManager.stop();
@@ -124,7 +134,28 @@ public class Contador extends AppCompatActivity {
             finish();
         }
     }
-
+    @Override
+    public void onPause() {
+        super.onPause();
+        // Requere uma API superior a 16 para as notificações funcionarem
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            if (contando) {
+                Notification.Builder notification = new Notification.Builder(getApplicationContext())
+                        .setContentTitle(getResources().getString(R.string.notificacao_titulo))
+                        .setContentText(getResources().getString(R.string.notificacao_mensagem))
+                        .setSmallIcon(android.R.drawable.ic_lock_idle_alarm)
+                        .setAutoCancel(true);
+                NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                Intent intent = new Intent(getApplicationContext(), Contador.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                PendingIntent intentPendente = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                notification.setContentIntent(intentPendente);
+                if (manager != null) {
+                    manager.notify(android.R.drawable.ic_lock_idle_alarm, notification.build());
+                }
+            }
+        }
+    }
     /**
      * Handler do botão interromper
      * @param v - Instancia do botão
@@ -142,6 +173,7 @@ public class Contador extends AppCompatActivity {
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     contando = false;
                                     interrompidoPeloUsuario = true;
+                                    animacao = false;
                                     if (songManager.isPlaying()) {
                                         try {
                                             songManager.stop();
@@ -159,6 +191,7 @@ public class Contador extends AppCompatActivity {
                 }else{
                     contando = false;
                     interrompidoPeloUsuario = true;
+                    animacao = false;
                     if (songManager.isPlaying()) {
                         try {
                             songManager.stop();
@@ -178,7 +211,6 @@ public class Contador extends AppCompatActivity {
      */
     class Tempo implements Runnable {
         private byte aux = 0;
-        private boolean animacao = true;
         @Override
         public void run() {
             contador.setText(getResources().getString(R.string.timer_ativo).replace("{h}",sHoras).replace("{m}",sMinutos).replace("{s}",sSegundos));
