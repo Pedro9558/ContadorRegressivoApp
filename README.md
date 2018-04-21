@@ -23,7 +23,7 @@ Um aplicativo feito para realizar contagens regressivas e alertar o usuário atra
 1.Correção de bugs
   - Corrigido bug do celular continuar vibrando, mesmo após encerramento do contador
   - Corrigido problemas com o layout do menu inicial(Espero)
-  - Corrigido bug de prévia continuar tocando quando alternada a escolha do som para Nenhum
+  - Corrigido bug de prévia continuar tocando quando alternada a escolha do som para Nenhum <br />
 2.Adições
   - Adicionado sistema de notificações que notifica o usuário caso haja um contador em andamento
 
